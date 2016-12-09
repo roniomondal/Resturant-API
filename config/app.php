@@ -179,6 +179,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Serverfireteam\Panel\PanelServiceProvider::class,
+        EllipseSynergie\ApiResponse\Laravel\ResponseServiceProvider::class,
+        
 
     ],
 
