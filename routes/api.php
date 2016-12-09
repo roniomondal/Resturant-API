@@ -17,4 +17,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/newuser', 'Api\User\UserController@store');
+
+Route::get('/users','Api\User\UserController@index');
+Route::get('/user/{id}','Api\User\UserController@show');
+Route::post('/user', 'Api\User\UserController@store');
+Route::put('/user/{id}','Api\User\UserController@update');
+Route::delete('user/{id}','Api\User\UserController@destroy');
+
+
+

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Http\Requests;
 use EllipseSynergie\ApiResponse\Contracts\Response;
-//use App\Transformer\TaskTransformer;
+use App\Transformer\UserTransformer;
 
 class UserController extends Controller
 {
@@ -27,6 +27,8 @@ class UserController extends Controller
     public function index()
     {
         //
+		$user = User::all();
+		return response()->json($user);
     }
 
     /**
@@ -82,6 +84,16 @@ class UserController extends Controller
     public function show($id)
     {
         //
+		try{
+			$user = User::find($id);
+			//return response()->json($user);
+			return $this->response->withItem($user, new  UserTransformer());
+			
+		} catch ( \Illuminate\Database\QueryException $e) {
+			 $arr = $e->errorInfo;
+			unset($arr[0]);
+			return response()->json( $arr);
+		}
     }
 
     /**
@@ -104,7 +116,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //	
+		
+		$user = \App\User::find($id);
+
+		$user->fname = $request['fname'];
+		
+		return $this->response->withItem($user->save(), new  UserTransformer());
+		
+		//return response()->json());
     }
 
     /**
@@ -116,5 +136,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+		
+		
+        $user = User::find($id);
+        if (!$user) {
+            return $this->response->errorNotFound('User Not Found');
+        }
+ 
+        if($user->delete()) {
+             return $this->response->withItem($user, new  UserTransformer());
+        } else {
+            return $this->response->errorInternalError('Could not delete a User info');
+        }
     }
 }
