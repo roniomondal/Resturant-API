@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMenu extends Migration
+class CreateGalleryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,17 @@ class CreateMenu extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::table('gallery', function (Blueprint $table) {
+            //
+			Schema::create('gallery', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->longText('description');
-            $table->integer('price');
-            $table->boolean('recipe');
-            $table->integer('category');
-             $table->boolean('status');
-            $table->rememberToken();
+            $table->string('title');
+            $table->string('subtitle');
+            $table->string('image');
             $table->timestamps();
+			});
         });
     }
-
-	
-	
-	
 
     /**
      * Reverse the migrations.
@@ -38,7 +32,8 @@ class CreateMenu extends Migration
      */
     public function down()
     {
-        //
-        Schema::drop('menus');
+        Schema::table('gallery', function (Blueprint $table) {
+            //
+        });
     }
 }
