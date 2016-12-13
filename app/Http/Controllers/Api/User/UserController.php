@@ -36,9 +36,27 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+		
+		$http = new \GuzzleHttp\Client();  
+		 $oauth_client = \DB::table('oauth_clients')->where('name', '=', 'Laravel Password Grant Client')->where('password_client', '=', 1)->first();  
+		 $response = $http->post(url('/') . '/oauth/token', [  
+		   'form_params' => [  
+			 'grant_type' => 'password',  
+			 'client_id' => $oauth_client->id,  
+			 'client_secret' => $oauth_client->secret,  
+			 'username' => $request->email,  
+			 'password' => $request->password,  
+			 'scope' => '',  
+		   ],  
+		 ]);  
+		 $response_body = json_decode((string)$response->getBody(), true);  
+		 $access_token = $response_body['access_token'] ;  
+		 $refresh_token = $response_body['refresh_token'];  
+		 
+		 return $response_body;
     }
 
     /**

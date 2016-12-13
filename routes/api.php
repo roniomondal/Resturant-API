@@ -18,11 +18,14 @@ Route::get('/user', function (Request $request) {
 });
 
 
-Route::get('/users','Api\User\UserController@index');
+Route::get('/users','Api\User\UserController@index')->middleware("auth:api");
 Route::get('/user/{id}','Api\User\UserController@show');
 Route::post('/user', 'Api\User\UserController@store');
 Route::put('/user/{id}','Api\User\UserController@update');
 Route::delete('user/{id}','Api\User\UserController@destroy');
+
+
+Route::get('/usersss','Api\User\UserController@create');
 
 
 

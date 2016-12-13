@@ -180,6 +180,7 @@ return [
 
         Serverfireteam\Panel\PanelServiceProvider::class,
         EllipseSynergie\ApiResponse\Laravel\ResponseServiceProvider::class,
+		Laravel\Passport\PassportServiceProvider::class,
         
 
     ],
