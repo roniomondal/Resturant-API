@@ -11,7 +11,7 @@ class menu extends Model {
     protected $table = 'menus';
 	
 	protected $fillable = [
-        'name', 'description','price', 'recipe', 'category', 'status',
+        'name', 'image','description','price', 'recipe', 'category', 'status',
     ];
 
     /**
@@ -22,5 +22,13 @@ class menu extends Model {
     protected $hidden = [
        'remember_token','created_at','updated_at'
     ];
+	
+
+	public function getImageAttribute($value)
+    {
+        return \URL::to('/').'/uploads/images/'.$value;
+    }
+	
+		
 
 }

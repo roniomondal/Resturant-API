@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\User;
 use App\Http\Requests;
 use EllipseSynergie\ApiResponse\Contracts\Response;
@@ -104,8 +105,8 @@ class UserController extends Controller
         //
 		try{
 			$user = User::find($id);
-			//return response()->json($user);
-			return $this->response->withItem($user, new  UserTransformer());
+				return response()->json($user);
+			//return $this->response->withItem($user, new  UserTransformer());
 			
 		} catch ( \Illuminate\Database\QueryException $e) {
 			 $arr = $e->errorInfo;
