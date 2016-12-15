@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App;
 
@@ -7,9 +7,9 @@ use Serverfireteam\Panel\ObservantTrait;
 
 class Category extends Model {
 	use ObservantTrait;
-	
+
     protected $table = 'Category';
-	
+
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,7 @@ class Category extends Model {
      * @var array
      */
     protected $fillable = [
-        'id', 'category', 
+        'id', 'category',
     ];
 
     /**
@@ -26,7 +26,7 @@ class Category extends Model {
      * @var array
      */
     protected $hidden = [
-        'remember_token',
+        'created_at','updated_at','remember_token'
     ];
 
 }

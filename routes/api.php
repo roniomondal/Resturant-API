@@ -33,9 +33,9 @@ Route::get('/menu/search/{term}/{keyword}','Api\Menu\MenuController@search');
 
 
 //Category Route
+Route::get('/category','Api\Menu\CategoryController@index');
 
 
+
+//Authentication via API
 Route::get('/auth','Api\User\UserController@create');
-
-
-

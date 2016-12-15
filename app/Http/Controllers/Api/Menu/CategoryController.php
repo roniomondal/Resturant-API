@@ -17,9 +17,19 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     protected $respose;
+
+   	public function __construct(Response $response)
+   	{
+   	   $this->response = $response;
+   	}
+
+
     public function index()
     {
-        //
+      $category = Category::all()->where('status', 1);
+      return response()->json($category);
     }
 
     /**
