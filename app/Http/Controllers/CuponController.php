@@ -31,7 +31,7 @@ class CuponController extends CrudController {
       $this->grid->add('id', 'Cupon ID');
 			$this->grid->add('cupon', 'Cupon Code');
 			$this->grid->add('discount', 'Discount Amount');
-      $this->grid->add('{{ ($percentage==1)? "Percentage" : "Not Percentage" }}', 'Percentage / Amount');
+      $this->grid->add('{{ ($percentage==1)? "Percentage" : "Amount" }}', 'Percentage / Amount');
 
 
       $this->grid->add('{{ ($status==1)? "Avilable" : "Not Avilable" }}', 'Availability');

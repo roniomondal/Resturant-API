@@ -5,13 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Serverfireteam\Panel\ObservantTrait;
 
-class Order extends Model {
+class Charges extends Model {
 	use ObservantTrait;
 
-    protected $table = 'Order';
+    protected $table = 'Charges';
 
 		protected $fillable = [
-        'user_id', 'items','item_count', 'item_total', 'total',
+        'packaging_charges', 'tax','	delivery_charges',
     ];
 
     /**
@@ -22,10 +22,5 @@ class Order extends Model {
     protected $hidden = [
         'created_at', 'updated_at',
     ];
-
-		public function setItemsAttribute($value){
-			return json_decode($value);
-		}
-
 
 }
